@@ -9,9 +9,11 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.app_bar_dashboard.*
+import kotlinx.android.synthetic.main.content_dashboard.*
 
 class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,6 +34,16 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        //-------------------------------------------------------------------------------------------------------
+        //                                              Working Area                                           //
+        //-------------------------------------------------------------------------------------------------------
+
+        bpButton.setOnClickListener {
+            Toast.makeText(this, "bp", Toast.LENGTH_LONG).show()
+        }
+
+        //-------------------------------------------------------------------------------------------------------
     }
 
     override fun onBackPressed() {
