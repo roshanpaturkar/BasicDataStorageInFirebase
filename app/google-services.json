@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "622460413336",
+    "firebase_url": "https://smokerminimodel.firebaseio.com",
+    "project_id": "smokerminimodel",
+    "storage_bucket": "smokerminimodel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622460413336:android:30eb86492705e40c",
+        "android_client_info": {
+          "package_name": "roshan.paturkar.com.smokerminimodel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622460413336-dob2p7tkapd49r0okqf7t18j4spkvpv1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "roshan.paturkar.com.smokerminimodel",
+            "certificate_hash": "d2da2257d53a6dbac6fbf875fdffb28db8bcce37"
+          }
+        },
+        {
+          "client_id": "622460413336-gp5sruvbr0obj95637pa6n5dq945kn24.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKnqi9tIlQexHNd_xtkI9WbBXM2Eu0U9c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622460413336-gp5sruvbr0obj95637pa6n5dq945kn24.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
