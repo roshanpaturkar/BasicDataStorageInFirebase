@@ -43,6 +43,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        createAccount.setOnClickListener {
+            startActivity(Intent(this, RegistrationActivity::class.java))
+        }
+
         forgetPassword.setOnClickListener {
             var email: String = emailLoginEditText.text.toString().trim()
 
