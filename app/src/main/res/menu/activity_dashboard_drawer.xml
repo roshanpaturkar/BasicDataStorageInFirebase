@@ -18,7 +18,7 @@
                 android:title="Slideshow"/>
         <item
                 android:id="@+id/reports"
-                android:icon="@android:drawable/ic_input_get"
+                android:icon="@drawable/report"
                 android:title="My Reports"/>
     </group>
 

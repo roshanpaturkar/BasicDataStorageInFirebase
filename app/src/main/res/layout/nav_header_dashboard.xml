@@ -22,17 +22,16 @@
             android:id="@+id/imageView"/>
 
     <TextView
-            android:id="@+id/navigationName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:text="@string/nav_header_title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            android:text="Nikita Mowade"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" android:id="@+id/navigationName"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nav_header_subtitle"
+            android:text="nikitamowade09@gmail.com"
             android:id="@+id/navigationEmail"/>
 
 </LinearLayout>

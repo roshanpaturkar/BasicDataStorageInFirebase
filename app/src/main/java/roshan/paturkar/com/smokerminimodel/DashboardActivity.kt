@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -26,8 +25,10 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-        supportActionBar!!.title = "Dashboard"
         setSupportActionBar(toolbar)
+        supportActionBar!!.title = "Dashboard!"
+
+        setDrawerData()
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -42,9 +43,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        //-------------------------------------------------------------------------------------------------------
-        //                                              Working Area                                           //
-        //-------------------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------
+        //                                  Working Area
+        //-----------------------------------------------------------------------------------------------
 
         bpButton.setOnClickListener {
             startActivity(Intent(this, BloodPressureActivity::class.java))
@@ -62,7 +63,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             startActivity(Intent(this, CalciumActivity::class.java))
         }
 
-        //-------------------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------
+
     }
 
     override fun onBackPressed() {
@@ -115,9 +117,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         return true
     }
 
-    //-------------------------------------------------------------------------------------------
-    //                                     User Define functions
-    //-------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------
+    //                          User Define Function
+    //---------------------------------------------------------------------------------------
 
     private fun setDrawerData() {
         var mCurrentUser: FirebaseUser? = null
@@ -143,5 +145,5 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     }
 
-    //-------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------
 }
