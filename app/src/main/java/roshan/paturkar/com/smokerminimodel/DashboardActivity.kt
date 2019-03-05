@@ -11,15 +11,22 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.app_bar_dashboard.*
 import kotlinx.android.synthetic.main.content_dashboard.*
+import kotlinx.android.synthetic.main.nav_header_dashboard.*
 
 class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+        supportActionBar!!.title = "Dashboard"
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
@@ -40,7 +47,19 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         //-------------------------------------------------------------------------------------------------------
 
         bpButton.setOnClickListener {
-            Toast.makeText(this, "bp", Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, BloodPressureActivity::class.java))
+        }
+
+        bgButton.setOnClickListener {
+            startActivity(Intent(this, BloodGlucoseActivity::class.java))
+        }
+
+        hemoButton.setOnClickListener {
+            startActivity(Intent(this, HimoglobinActivity::class.java))
+        }
+
+        calButton.setOnClickListener {
+            startActivity(Intent(this, CalciumActivity::class.java))
         }
 
         //-------------------------------------------------------------------------------------------------------
@@ -82,8 +101,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.nav_slideshow -> {
 
             }
-            R.id.nav_manage -> {
-
+            R.id.reports -> {
+                startActivity(Intent(this, ReportsActivity::class.java))
             }
             R.id.logout -> {
                 FirebaseAuth.getInstance().signOut()
@@ -95,4 +114,34 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
+
+    //-------------------------------------------------------------------------------------------
+    //                                     User Define functions
+    //-------------------------------------------------------------------------------------------
+
+    private fun setDrawerData() {
+        var mCurrentUser: FirebaseUser? = null
+        var userId: String? = null
+
+        mCurrentUser = FirebaseAuth.getInstance().currentUser
+        userId = mCurrentUser!!.uid
+
+        var userName = FirebaseDatabase.getInstance().reference.child("GHRCE").child("Users").child(userId)
+
+        userName!!.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError?) {}
+
+            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+                var fname = dataSnapshot!!.child("firstName").value.toString().capitalize()
+                var lname = dataSnapshot!!.child("lastName").value.toString().capitalize()
+                var email = dataSnapshot!!.child("email").value.toString()
+
+                navigationName.text = "$fname $lname"
+                navigationEmail.text = email
+            }
+        })
+
+    }
+
+    //-------------------------------------------------------------------------------------------
 }

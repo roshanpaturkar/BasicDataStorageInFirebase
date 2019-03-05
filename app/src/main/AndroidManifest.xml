@@ -11,6 +11,16 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".ReportsActivity">
+        </activity>
+        <activity android:name=".CalciumActivity">
+        </activity>
+        <activity android:name=".HimoglobinActivity">
+        </activity>
+        <activity android:name=".BloodGlucoseActivity">
+        </activity>
+        <activity android:name=".BloodPressureActivity">
+        </activity>
         <activity
                 android:name=".DashboardActivity"
                 android:label="@string/title_activity_dashboard"
