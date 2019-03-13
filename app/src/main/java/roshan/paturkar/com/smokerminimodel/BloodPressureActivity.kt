@@ -5,25 +5,31 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_blood_pressure.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class BloodPressureActivity : AppCompatActivity() {
 
     var mAuth: FirebaseAuth? = null
-    var mDatabaseRef: DatabaseReference? = null
+    var userId: String? = null
+    var mCurrentUser: FirebaseUser? = null
 
-    var progressDailog: ProgressDialog? = null
+    val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blood_pressure)
         supportActionBar!!.title = "Blood Pressure!"
 
-        mAuth = FirebaseAuth.getInstance()
-        progressDailog = ProgressDialog(this)
+        mCurrentUser = FirebaseAuth.getInstance().currentUser
+        userId = mCurrentUser!!.uid
 
-        checkSugarButton.setOnClickListener {
+        mAuth = FirebaseAuth.getInstance()
+
+        checkBp.setOnClickListener {
             var status = check()
 
             if (!status.equals("")) {
@@ -34,45 +40,35 @@ class BloodPressureActivity : AppCompatActivity() {
         }
 
         addBpToReport.setOnClickListener {
-//            val currentUser = mAuth!!.currentUser
-//            val userID = currentUser!!.uid
-//            val status = check()
-//            var report: String? = null
-//
-//            if (!status.equals("")){
-//                Toast.makeText(this, "IN", Toast.LENGTH_LONG).show()
-//                var userName = FirebaseDatabase.getInstance().reference.child("GHRCE").child("Reports").child(userID)
-//
-//                userName!!.addValueEventListener(object : ValueEventListener {
-//                    override fun onCancelled(p0: DatabaseError?) {
-//                        Log.d("NULL DATA >>>", p0.toString())
-//                    }
-//
-//
-//
-//                    override fun onDataChange(dataSnapshot: DataSnapshot?) {
-//                        report = dataSnapshot!!.child("report").value.toString()
-//
-//                        userName.child("report").setValue(status)
-//
-//                        if (report.equals("null")){
-//                            userName.child("report").setValue(status)
-//                        } else {
-//                            //userName.child("report").setValue(status + "\n" + report)
-//                        }
-//                    }
-//                })
-//            } else {
-//                Toast.makeText(this, "Please fill all the details!", Toast.LENGTH_LONG).show()
-//            }
-            Toast.makeText(this, "Coming Soon!", Toast.LENGTH_LONG).show()
+            var sy = systolicEditText.text.toString().trim()
+            var di = diastolicEditText.text.toString().trim()
+            val dataMap = HashMap<String, Any>()
+
+            if (sy.isNotEmpty() && di.isNotEmpty()) {
+                var data = "---------------------" + "\n" + "Report Type: Blood Pressure" + "\n" + "Date: ${date()}" + "\n" + "Systolic: $sy" + "\n" + "Diastolic: $di" + "\n" + "Status: ${check()}" + "\n" + "---------------------"
+
+                dataMap["report"] = data
+
+                db.collection(userId!!)
+                    .add(dataMap)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Report added successfully!", Toast.LENGTH_LONG).show()
+                    }
+                    .addOnFailureListener{
+                        Toast.makeText(this, "Unable to add report!", Toast.LENGTH_LONG).show()
+                    }
+
+                Toast.makeText(this, dataMap["report"].toString(), Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Please fill all the details!", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
 
     private fun check(): String{
-        var sy = fastingEditText.text.toString().trim()
-        var di = postMealEditText.text.toString().trim()
+        var sy = systolicEditText.text.toString().trim()
+        var di = diastolicEditText.text.toString().trim()
 
         if (sy.isNotEmpty() && di.isNotEmpty()) {
             var status = Support.checkBp(sy, di)
@@ -80,5 +76,18 @@ class BloodPressureActivity : AppCompatActivity() {
         } else {
             return ""
         }
+    }
+
+    private fun date(): String {
+        val sdf = SimpleDateFormat("dd/MM/yyyy hh:mm:ss")
+        val currentDate = sdf.format(Date())
+        System.out.println(" C DATE is  "+currentDate)
+
+        return currentDate
+    }
+
+    fun java.sql.Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
     }
 }

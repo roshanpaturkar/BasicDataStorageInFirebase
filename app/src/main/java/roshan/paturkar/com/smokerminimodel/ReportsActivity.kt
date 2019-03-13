@@ -2,6 +2,11 @@ package roshan.paturkar.com.smokerminimodel
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_reports.*
 import java.sql.Date
 import java.text.SimpleDateFormat
@@ -9,20 +14,35 @@ import java.util.*
 
 class ReportsActivity : AppCompatActivity() {
 
+    var mAuth: FirebaseAuth? = null
+    var userId: String? = null
+    var mCurrentUser: FirebaseUser? = null
+
+    val db = FirebaseFirestore.getInstance()
+
+    var data: String? = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reports)
         supportActionBar!!.title = "My Reports!"
 
-        val sdf = SimpleDateFormat("dd/MM/yyyy hh:mm:ss")
-        val currentDate = sdf.format(Date())
-        System.out.println(" C DATE is  "+currentDate)
+        mCurrentUser = FirebaseAuth.getInstance().currentUser
+        userId = mCurrentUser!!.uid
 
-        date.text = currentDate
-    }
+        mAuth = FirebaseAuth.getInstance()
 
-    fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
-        val formatter = SimpleDateFormat(format, locale)
-        return formatter.format(this)
+        db.collection(userId!!)
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    data = document.data.get("report").toString() + "\n" + data
+                    Log.d("Data Read >>> ", document.id + " => " + document.data)
+                    reports.text = data
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("Data Failed >>> ", "Error getting documents.", exception)
+            }
     }
 }

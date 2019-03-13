@@ -51,7 +51,7 @@ public class Support {
         int h = txtToInt(he);
 
         if (h < 13.5) {
-            return "Hemoglobin is LOW";
+            return "Hemoglobin is LOW!";
         } else if (h >= 13.5 && h <= 17.5) {
             return "Hemoglobin is NORMAL";
         } else {
@@ -63,9 +63,9 @@ public class Support {
         int c = txtToInt(cl);
 
         if (c < 8.5) {
-            return "Calcium is LOW";
+            return "Calcium is LOW!";
         } else if (c >= 8.5 && c <= 10.5) {
-            return "Calcium is NORMAL";
+            return "Calcium is NORMAL!";
         } else {
             return "Calcium is HIGH!";
         }

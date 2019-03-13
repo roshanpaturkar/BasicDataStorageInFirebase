@@ -11,9 +11,9 @@
             android:layout_height="wrap_content"
             android:inputType="numberSigned"
             android:ems="10"
-            android:id="@+id/fastingEditText"
+            android:id="@+id/systolicEditText"
             android:hint="Systolic" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/postMealEditText"
+            app:layout_constraintEnd_toStartOf="@+id/postmealEditText"
             android:layout_marginStart="88dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="128dp" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0.604" android:textAlignment="center"/>
@@ -22,16 +22,16 @@
             android:layout_height="wrap_content"
             android:inputType="numberSigned"
             android:ems="10"
-            android:id="@+id/postMealEditText"
+            android:id="@+id/diastolicEditText"
             android:hint="Diastolic" android:layout_marginEnd="108dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="128dp" android:textAlignment="center"/>
     <Button
             android:text="check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/checkSugarButton" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:id="@+id/checkBp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/fastingEditText"
+            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/systolicEditText"
             app:layout_constraintHorizontal_bias="0.498" android:background="@color/colorPrimary"
             android:textAlignment="center" android:textColor="@color/common_google_signin_btn_text_dark_default"/>
     <Button
@@ -40,8 +40,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/addBpToReport" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/checkSugarButton"
-            app:layout_constraintHorizontal_bias="0.498" android:background="@color/colorPrimary"
+            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/checkBp"
+            android:background="@color/colorPrimary"
             android:textAlignment="center" android:textColor="@color/common_google_signin_btn_text_dark_default"/>
     <TextView
             android:layout_width="wrap_content"
