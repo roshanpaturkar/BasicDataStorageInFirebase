@@ -1,7 +1,5 @@
 package roshan.paturkar.com.smokerminimodel;
 
-import static android.os.Build.VERSION_CODES.P;
-
 public class Support {
 
     public static int txtToInt(String num){

@@ -41,7 +41,7 @@ class BloodGlucoseActivity : AppCompatActivity() {
             val dataMap = HashMap<String, Any>()
 
             if (po.isNotEmpty() && fa.isNotEmpty()) {
-                var data = "---------------------" + "\n" + "Report Type: Blood Glucose" + "\n" + "Date: ${date()}" + "\n" + "Fasting: $fa" + "\n" + "Postmeal: $po" + "\n" + "Status: ${check()}" + "\n" + "---------------------"
+                var data = "------------------------------------------" + "\n" + "Report Type: Blood Glucose" + "\n" + "Date: ${date()}" + "\n" + "Fasting: $fa" + "\n" + "Postmeal: $po" + "\n" + "Status: ${check()}" + "\n" + "------------------------------------------"
 
                 dataMap["report"] = data
 

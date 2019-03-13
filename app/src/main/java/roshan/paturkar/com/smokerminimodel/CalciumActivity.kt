@@ -40,7 +40,7 @@ class CalciumActivity : AppCompatActivity() {
             val dataMap = HashMap<String, Any>()
 
             if (cl.isNotEmpty()) {
-                var data = "---------------------" + "\n" + "Report Type: Calcium" + "\n" + "Date: ${date()}" + "\n" + "Calcium: $cl" + "\n" + "Status: ${check()}" + "\n" + "---------------------"
+                var data = "------------------------------------------" + "\n" + "Report Type: Calcium" + "\n" + "Date: ${date()}" + "\n" + "Calcium: $cl" + "\n" + "Status: ${check()}" + "\n" + "------------------------------------------"
 
                 dataMap["report"] = data
 

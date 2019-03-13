@@ -40,7 +40,7 @@ class HimoglobinActivity : AppCompatActivity() {
             val dataMap = HashMap<String, Any>()
 
             if (he.isNotEmpty()) {
-                var data = "---------------------" + "\n" + "Report Type: Hemoglobin" + "\n" + "Date: ${date()}" + "\n" + "Hemoglobin: $he" + "\n" + "Status: ${check()}" + "\n" + "---------------------"
+                var data = "------------------------------------------" + "\n" + "Report Type: Hemoglobin" + "\n" + "Date: ${date()}" + "\n" + "Hemoglobin: $he" + "\n" + "Status: ${check()}" + "\n" + "------------------------------------------"
 
                 dataMap["report"] = data
 

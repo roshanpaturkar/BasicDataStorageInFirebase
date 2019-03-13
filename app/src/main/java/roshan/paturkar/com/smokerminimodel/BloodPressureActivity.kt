@@ -45,7 +45,7 @@ class BloodPressureActivity : AppCompatActivity() {
             val dataMap = HashMap<String, Any>()
 
             if (sy.isNotEmpty() && di.isNotEmpty()) {
-                var data = "---------------------" + "\n" + "Report Type: Blood Pressure" + "\n" + "Date: ${date()}" + "\n" + "Systolic: $sy" + "\n" + "Diastolic: $di" + "\n" + "Status: ${check()}" + "\n" + "---------------------"
+                var data = "------------------------------------------" + "\n" + "Report Type: Blood Pressure" + "\n" + "Date: ${date()}" + "\n" + "Systolic: $sy" + "\n" + "Diastolic: $di" + "\n" + "Status: ${check()}" + "\n" + "------------------------------------------"
 
                 dataMap["report"] = data
 

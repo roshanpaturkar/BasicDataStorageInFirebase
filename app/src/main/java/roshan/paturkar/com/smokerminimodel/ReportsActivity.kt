@@ -1,5 +1,6 @@
 package roshan.paturkar.com.smokerminimodel
 
+import android.app.ProgressDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,10 +23,16 @@ class ReportsActivity : AppCompatActivity() {
 
     var data: String? = ""
 
+    var progressDailog: ProgressDialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reports)
         supportActionBar!!.title = "My Reports!"
+
+        progressDailog = ProgressDialog(this)
+        progressDailog!!.setMessage("Fetching Data....")
+        progressDailog!!.show()
 
         mCurrentUser = FirebaseAuth.getInstance().currentUser
         userId = mCurrentUser!!.uid
@@ -44,5 +51,6 @@ class ReportsActivity : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.w("Data Failed >>> ", "Error getting documents.", exception)
             }
+        progressDailog!!.dismiss()
     }
 }
